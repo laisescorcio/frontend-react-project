@@ -1,14 +1,16 @@
 import styles from "./Button.module.scss";
 
+type ButtonType = "button" | "submit" | "reset";
+
 type ButtonProps = {
   text?: string;
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  type: string;
 };
 
-export default function Button({ text, onClick }: ButtonProps) {
+export default function Button({ text, type }: ButtonProps) {
   return (
     <div className={styles.buttonWrapper}>
-      <button className={styles.button} onClick={onClick}>
+      <button className={styles.button} type={type as ButtonType}>
         {text}
       </button>
     </div>

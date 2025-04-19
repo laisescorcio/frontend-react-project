@@ -1,30 +1,36 @@
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
 import LoginPage from "./pages/LoginPage/LoginPage";
+import DashboardPage from "./pages/Dashboard/Dashboard";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   return (
-    <>
-      {isAuthenticated ? (
-        <>
-          <div>
-            <a href="https://vite.dev" target="_blank">
-              <img src={viteLogo} className="logo" alt="Vite logo" />
-            </a>
-            <a href="https://react.dev" target="_blank">
-              <img src={reactLogo} className="logo react" alt="React logo" />
-            </a>
-          </div>
-          <h1>Vite + React</h1>
-        </>
-      ) : (
-        <LoginPage onLogin={setIsAuthenticated} />
-      )}
-    </>
+    <Router>
+      <Routes>
+        <Route
+          path="/login"
+          element={<LoginPage onLogin={() => setIsAuthenticated(true)} />}
+        />
+        <Route
+          path="/dashboard"
+          element={
+            isAuthenticated ? (
+              <DashboardPage />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+        <Route path="*" element={<Navigate to="/login" replace />} />
+      </Routes>
+    </Router>
   );
 }
 

@@ -9,18 +9,21 @@ interface LoginPageProps {
 }
 
 const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
     onLogin(true);
+    navigate("/dashboard"); // redireciona
   };
 
-  console.log("email", email);
-  console.log("password", password);
   return (
     <div className={styles.login}>
-      <form className={styles.loginForm}>
+      <form className={styles.loginForm} onSubmit={handleSubmit}>
         <h2>Login</h2>
         <Input
           type="email"
@@ -34,7 +37,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
           placeholder="Digite sua senha"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button onClick={handleSubmit} text={"Entrar"} />
+        <Button text="Entrar" type="submit" />
       </form>
     </div>
   );
