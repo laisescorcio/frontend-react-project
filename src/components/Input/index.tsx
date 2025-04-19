@@ -1,12 +1,12 @@
 import styles from "./Input.module.scss";
 
-type InputProps = {
+interface InputProps {
   label?: string;
   type?: string;
   value?: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
-};
+}
 
 export default function Input({
   label,

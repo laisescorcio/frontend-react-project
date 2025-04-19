@@ -1,9 +1,7 @@
 .login {
   display: flex;
   flex-direction: column;
-  width: 100%;
   min-width: 300px;
-  max-width: 400px;
   padding: 16px;
   background-color: white;
   border-radius: 8px;
@@ -17,5 +15,11 @@
       color: white;
       background-color: #5144ee;
     }
+  }
+}
+
+@media (min-width: 1025px) {
+  .login {
+    min-width: 400px;
   }
 }

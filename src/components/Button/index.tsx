@@ -2,10 +2,10 @@ import styles from "./Button.module.scss";
 
 type ButtonType = "button" | "submit" | "reset";
 
-type ButtonProps = {
+interface ButtonProps {
   text?: string;
   type: string;
-};
+}
 
 export default function Button({ text, type }: ButtonProps) {
   return (

@@ -18,7 +18,8 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
     e.preventDefault();
 
     onLogin(true);
-    navigate("/dashboard"); // redireciona
+    localStorage.setItem("isAuthenticated", true);
+    navigate("/dashboard");
   };
 
   return (

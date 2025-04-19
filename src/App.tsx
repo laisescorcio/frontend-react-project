@@ -10,18 +10,19 @@ import DashboardPage from "./pages/Dashboard/Dashboard";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const isAuthenticatedValidation = localStorage.getItem("isAuthenticated");
 
   return (
     <Router>
       <Routes>
         <Route
           path="/login"
-          element={<LoginPage onLogin={() => setIsAuthenticated(true)} />}
+          element={<LoginPage onLogin={setIsAuthenticated} />}
         />
         <Route
           path="/dashboard"
           element={
-            isAuthenticated ? (
+            isAuthenticatedValidation ? (
               <DashboardPage />
             ) : (
               <Navigate to="/login" replace />
