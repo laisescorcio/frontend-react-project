@@ -2,7 +2,7 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import LoginPage from "./pages/LoginPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -22,7 +22,7 @@ function App() {
           <h1>Vite + React</h1>
         </>
       ) : (
-        <LoginPage />
+        <LoginPage onLogin={setIsAuthenticated} />
       )}
     </>
   );
