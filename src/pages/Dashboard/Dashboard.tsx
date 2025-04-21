@@ -2,6 +2,7 @@ import { useAuth } from "../../providers/AuthProvider";
 import { useEffect, useState } from "react";
 import { apiBase } from "../../services/api";
 import styles from "./Dashboard.module.scss";
+import { ClipLoader } from "react-spinners";
 
 export interface User {
   id: number;
@@ -36,7 +37,7 @@ const Dashboard = () => {
   }, []);
 
   if (loading) {
-    return <p>Carregando...</p>;
+    return <ClipLoader color="#fff" size={16} />;
   }
 
   if (error) {
