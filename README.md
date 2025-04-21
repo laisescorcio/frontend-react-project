@@ -42,6 +42,7 @@ Clone o projeto e instale as dependências:
 git clone https://github.com/seu-usuario/seu-repositorio.git
 cd seu-repositorio
 npm install
+```
 
 ---
 
@@ -51,6 +52,7 @@ Execute o projeto em ambiente de desenvolvimento:
 
 ```bash
 npm run dev
+```
 
 Após isso, abra o navegador e acesse:
 
