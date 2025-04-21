@@ -46,18 +46,18 @@ const LoginPage: React.FC = () => {
       <form className={styles.loginForm} onSubmit={handleSubmit(onSubmit)}>
         <h2 className={styles.loginTitle}>Login</h2>
         <Input
-          placeholder="Digite seu email"
+          placeholder="Enter your email"
           error={errors.email?.message}
           {...register("email")}
         />
         <Input
           type="password"
-          placeholder="Digite sua senha"
+          placeholder="Enter your password"
           error={errors.password?.message}
           {...register("password")}
         />
         {isError && <FailedLogin />}
-        <Button text="Entrar" type="submit" isLoading={isLoading} />
+        <Button text="Login" type="submit" isLoading={isLoading} />
       </form>
     </div>
   );

@@ -3,8 +3,7 @@ import styles from "./FailedLogin.module.scss";
 const FailedLogin = () => {
   return (
     <p className={styles.failedLogin}>
-      Falha no login. Por favor, verifique seu e-mail e senha ou tente
-      novamente.
+      "Login failed. Please check your email and password or try again."
     </p>
   );
 };

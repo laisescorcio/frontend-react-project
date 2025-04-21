@@ -23,10 +23,11 @@ const Dashboard = () => {
 
   const getUser = async () => {
     try {
+      setLoading(true);
       const response = await apiBase.get<User>("/auth/profile");
       setUser(response.data);
     } catch (err) {
-      setError("Erro ao carregar dados do usuário.");
+      setError("Error loading user data.");
     } finally {
       setLoading(false);
     }
@@ -47,7 +48,7 @@ const Dashboard = () => {
   return (
     <main className={styles.dashboard}>
       <header>
-        <h1 className={styles.title}>Bem-vindo, {user?.name}!</h1>
+        <h1 className={styles.title}>Welcome, {user?.name}!</h1>
       </header>
 
       <section className={styles.profile}>
@@ -55,7 +56,7 @@ const Dashboard = () => {
           <img
             className={styles.avatar}
             src={user.avatar}
-            alt={`Avatar de ${user.name}`}
+            alt={`${user.name}'s avatar`}
           />
         )}
 
@@ -67,12 +68,12 @@ const Dashboard = () => {
             <strong>Email:</strong> {user?.email}
           </li>
           <li className={styles.profileInformationItem}>
-            <strong>Função:</strong> {user?.role}
+            <strong>Role:</strong> {user?.role}
           </li>
           <li className={styles.profileInformationItem}>
             {user?.creationAt && (
               <>
-                <strong>Criado em:</strong>{" "}
+                <strong>Created at:</strong>{" "}
                 {new Date(user?.creationAt).toLocaleString()}
               </>
             )}
@@ -80,7 +81,7 @@ const Dashboard = () => {
           <li className={styles.profileInformationItem}>
             {user?.updatedAt && (
               <>
-                <strong>Atualizado em:</strong>{" "}
+                <strong>Updated at:</strong>{" "}
                 {new Date(user?.updatedAt).toLocaleString()}
               </>
             )}
@@ -89,7 +90,7 @@ const Dashboard = () => {
       </section>
 
       <button className={styles.logoutButton} onClick={logout}>
-        Sair
+        Logout
       </button>
     </main>
   );
