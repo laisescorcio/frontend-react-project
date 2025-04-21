@@ -4,4 +4,14 @@ button {
   color: white;
   background-color: #5144ee;
   padding: 0.5rem;
+  border: none;
+
+  &:hover {
+    background-color: #4334e7;
+    transition: background-color ease 0.5s;
+  }
+
+  &:focus {
+    outline: none;
+  }
 }

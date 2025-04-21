@@ -7,10 +7,14 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 import { loginSchema, TLoginDataSchema } from "../../utils/loginSchema";
 import { useAuth } from "../../providers/AuthProvider";
+import FailedLogin from "../../components/FailedLogin";
+import { useState } from "react";
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
+  const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -21,32 +25,39 @@ const LoginPage: React.FC = () => {
   });
 
   const onSubmit = async (data: TLoginDataSchema) => {
+    setIsLoading(true);
     const result = await login(data);
 
     if (result) {
+      setIsLoading(false);
+
       navigate("/dashboard");
+      setIsError(false);
+
       return;
     }
 
-    alert("Não foi possivel fazer o login");
+    setIsLoading(false);
+    setIsError(true);
   };
 
   return (
     <div className={styles.login}>
       <form className={styles.loginForm} onSubmit={handleSubmit(onSubmit)}>
-        <h2>Login</h2>
+        <h2 className={styles.loginTitle}>Login</h2>
         <Input
           placeholder="Digite seu email"
           error={errors.email?.message}
           {...register("email")}
         />
         <Input
+          type="password"
           placeholder="Digite sua senha"
           error={errors.password?.message}
           {...register("password")}
         />
-
-        <Button text="Entrar" type="submit" />
+        {isError && <FailedLogin />}
+        <Button text="Entrar" type="submit" isLoading={isLoading} />
       </form>
     </div>
   );

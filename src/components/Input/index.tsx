@@ -23,7 +23,7 @@ export default function Input({
         className={styles.input}
         {...props}
       />
-      {error && <p>{error}</p>}
+      {error && <p className={styles.errorText}>{error}</p>}
     </div>
   );
 }

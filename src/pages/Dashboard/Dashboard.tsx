@@ -1,6 +1,7 @@
 import { useAuth } from "../../providers/AuthProvider";
 import { useEffect, useState } from "react";
 import { apiBase } from "../../services/api";
+import styles from "./Dashboard.module.scss";
 
 export interface User {
   id: number;
@@ -43,37 +44,44 @@ const Dashboard = () => {
   }
 
   return (
-    <main>
+    <main className={styles.dashboard}>
       <header>
-        <h1>Bem-vindo, {user?.name}!</h1>
-        <button onClick={logout}>Logout</button>
+        <h1 className={styles.title}>Bem-vindo, {user?.name}!</h1>
       </header>
 
-      <section>
+      <section className={styles.profile}>
         {user?.avatar && (
-          <img src={user.avatar} alt={`Avatar de ${user.name}`} />
+          <img
+            className={styles.avatar}
+            src={user.avatar}
+            alt={`Avatar de ${user.name}`}
+          />
         )}
 
-        <ul>
-          <li>
+        <ul className={styles.profileInformation}>
+          <li className={styles.profileInformationItem}>
             <strong>ID:</strong> {user?.id}
           </li>
-          <li>
+          <li className={styles.profileInformationItem}>
             <strong>Email:</strong> {user?.email}
           </li>
-          <li>
+          <li className={styles.profileInformationItem}>
             <strong>Função:</strong> {user?.role}
           </li>
-          <li>
+          <li className={styles.profileInformationItem}>
             <strong>Criado em:</strong>{" "}
             {new Date(user?.creationAt).toLocaleString()}
           </li>
-          <li>
+          <li className={styles.profileInformationItem}>
             <strong>Atualizado em:</strong>{" "}
             {new Date(user?.updatedAt).toLocaleString()}
           </li>
         </ul>
       </section>
+
+      <button className={styles.logoutButton} onClick={logout}>
+        Sair
+      </button>
     </main>
   );
 };

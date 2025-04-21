@@ -1,54 +1,58 @@
-# React + TypeScript + Vite
+# Projeto de Autenticação com React + API Fake Store
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto é uma aplicação front-end moderna construída com React e TypeScript. Ele simula um sistema de autenticação de usuários com consumo de dados de uma API externa, oferecendo uma experiência de Single Page Application (SPA) com rotas protegidas.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Funcionalidades
 
-## Expanding the ESLint configuration
+- Autenticação de usuários (login e logout)
+- Renderização condicional com base no estado de autenticação
+- Consumo de dados da API com Axios
+- Validação de formulários com Zod e React Hook Form
+- Controle de rotas protegidas com React Router
+- Indicadores de carregamento com React Spinners
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Tecnologias Utilizadas
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- **[TypeScript](https://www.typescriptlang.org/)** – Tipagem estática para maior robustez
+- **[Vite](https://vitejs.dev/)** – Empacotador rápido e moderno
+- **[SASS](https://sass-lang.com/)** – Pré-processador CSS para estilos modulares
+- **[React Router DOM](https://reactrouter.com/)** – Navegação e rotas condicionais
+- **[Axios](https://axios-http.com/)** – Requisições HTTP
+- **[React Hook Form](https://react-hook-form.com/)** – Gerenciamento de formulários
+- **[Zod](https://zod.dev/)** – Validação de dados baseada em schemas
+- **[React Spinners](https://www.davidhu.io/react-spinners/)** – Indicadores visuais de carregamento
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## API Utilizada
+
+A aplicação utiliza a [Platzi Fake Store API](https://fakeapi.platzi.com/en/rest/auth-jwt/#request), uma API mock que oferece endpoints de autenticação com JWT e dados fictícios de usuário.
+
+---
+
+## Instalação
+
+Clone o projeto e instale as dependências:
+
+```bash
+git clone https://github.com/seu-usuario/seu-repositorio.git
+cd seu-repositorio
+npm install
+
+---
+
+## Como Rodar
+
+Execute o projeto em ambiente de desenvolvimento:
+
+```bash
+npm run dev
+
+Após isso, abra o navegador e acesse:
+
+http://localhost:5173
+
