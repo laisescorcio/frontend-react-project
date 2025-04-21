@@ -69,12 +69,20 @@ const Dashboard = () => {
             <strong>Função:</strong> {user?.role}
           </li>
           <li className={styles.profileInformationItem}>
-            <strong>Criado em:</strong>{" "}
-            {new Date(user?.creationAt).toLocaleString()}
+            {user?.creationAt && (
+              <>
+                <strong>Criado em:</strong>{" "}
+                {new Date(user?.creationAt).toLocaleString()}
+              </>
+            )}
           </li>
           <li className={styles.profileInformationItem}>
-            <strong>Atualizado em:</strong>{" "}
-            {new Date(user?.updatedAt).toLocaleString()}
+            {user?.updatedAt && (
+              <>
+                <strong>Atualizado em:</strong>{" "}
+                {new Date(user?.updatedAt).toLocaleString()}
+              </>
+            )}
           </li>
         </ul>
       </section>

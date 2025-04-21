@@ -58,3 +58,8 @@ Após isso, abra o navegador e acesse:
 
 http://localhost:5173
 
+---
+
+## Como Logar
+
+Insira o e-mail **john@mail.com** e a senha **changeme** nos respectivos campos
