@@ -3,28 +3,27 @@ import styles from "./Input.module.scss";
 interface InputProps {
   label?: string;
   type?: string;
-  value?: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  error?: string;
   placeholder?: string;
 }
 
 export default function Input({
   label,
   type,
-  value,
-  onChange,
+  error,
   placeholder,
+  ...props
 }: InputProps) {
   return (
     <div className={styles.inputWrapper}>
       {label && <label className={styles.label}>{label}</label>}
       <input
         type={type}
-        value={value}
-        onChange={onChange}
         placeholder={placeholder}
         className={styles.input}
+        {...props}
       />
+      {error && <p>{error}</p>}
     </div>
   );
 }

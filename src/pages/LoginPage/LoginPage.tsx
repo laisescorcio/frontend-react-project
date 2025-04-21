@@ -1,63 +1,43 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
 import styles from "./LoginPage.module.scss";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
-import { loginSchema } from "../../utils/loginSchema";
+import { loginSchema, TLoginDataSchema } from "../../utils/loginSchema";
 
-interface LoginPageProps {
-  onLogin: (value: boolean) => void;
-}
-
-const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
+const LoginPage: React.FC = () => {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<TLoginDataSchema>({
+    resolver: zodResolver(loginSchema),
+  });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log({ email });
-    console.log({ password });
-    const result = loginSchema.safeParse({ email, password });
+  const onSubmit = (data: TLoginDataSchema) => {
+    alert(JSON.stringify(data));
 
-    console.log({ result });
-
-    if (!result.success) {
-      const firstError = result.error.errors[0]?.message || "Erro de validação";
-      setError(firstError);
-      return;
-    }
-
-    if (email === "admin@email.com" && password === "123456") {
-      setError("");
-
-      onLogin(true);
-      localStorage.setItem("isAuthenticated", true);
-      navigate("/dashboard");
-    } else {
-      setError("Email ou senha incorretos.");
-    }
+    navigate("/dashboard");
   };
 
   return (
     <div className={styles.login}>
-      <form className={styles.loginForm} onSubmit={handleSubmit}>
+      <form className={styles.loginForm} onSubmit={handleSubmit(onSubmit)}>
         <h2>Login</h2>
         <Input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
           placeholder="Digite seu email"
+          error={errors.email?.message}
+          {...register("email")}
         />
         <Input
-          type="password"
-          value={password}
           placeholder="Digite sua senha"
-          onChange={(e) => setPassword(e.target.value)}
+          error={errors.password?.message}
+          {...register("password")}
         />
-        {error && <p>{error}</p>}
         <Button text="Entrar" type="submit" />
       </form>
     </div>
