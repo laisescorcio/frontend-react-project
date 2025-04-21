@@ -6,9 +6,11 @@ import styles from "./LoginPage.module.scss";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import { loginSchema, TLoginDataSchema } from "../../utils/loginSchema";
+import { useAuth } from "../../providers/AuthProvider";
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const {
     register,
@@ -18,10 +20,15 @@ const LoginPage: React.FC = () => {
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = (data: TLoginDataSchema) => {
-    alert(JSON.stringify(data));
+  const onSubmit = async (data: TLoginDataSchema) => {
+    const result = await login(data);
 
-    navigate("/dashboard");
+    if (result) {
+      navigate("/dashboard");
+      return;
+    }
+
+    alert("Não foi possivel fazer o login");
   };
 
   return (
@@ -38,6 +45,7 @@ const LoginPage: React.FC = () => {
           error={errors.password?.message}
           {...register("password")}
         />
+
         <Button text="Entrar" type="submit" />
       </form>
     </div>
